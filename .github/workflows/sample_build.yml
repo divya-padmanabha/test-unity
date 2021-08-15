@@ -2,13 +2,13 @@ name: Build Sample
 on: [pull_request]
 
 jobs:
-  build:
-    runs-on: macos-latest
+  test:
+    runs-on: macOS-10.15
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.2
         with:
-          cmd: ./gradlew integrationTest
+          cmd: ./run-tests.sh
           api: 30
           tag: default
           abi: x86
