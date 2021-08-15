@@ -2,19 +2,13 @@ name: Build Sample
 on: [pull_request]
 
 jobs:
-
-  instrumentationTests:
-    name: Screenshot Tests
-    runs-on: macos-latest
+  test:
+    runs-on: macOS-10.15
     steps:
-
-      - name: Fetch Sources
-        uses: actions/checkout@v2
-
-      - name: Test build
-        uses: reactivecircus/android-emulator-runner@v2
+      - uses: actions/checkout@v1
+      - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.2
         with:
-          api-level: 29
-          target: google_apis
-          profile: pixel_3a
-          script: ./run-tests.sh
+          cmd: ./run-tests.sh
+          api: 30
+          tag: default
+          abi: x86
