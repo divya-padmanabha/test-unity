@@ -2,25 +2,13 @@ name: Build Sample
 on: [pull_request]
 
 jobs:
-  test:
+  build:
     runs-on: macos-latest
-    strategy:
-      matrix:
-        api-level: [29]
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      # Download & install the Android SDK.
-      - name: install android
-        uses: malinskiy/action-android/emulator-run-cmd@release/0.1.2
-          with:
-            cmd: ./gradlew integrationTest
-            api: 30
-            tag: google_apis
-            abi: x86
-      # Set up platform tools like adb.
-      - run: sdkmanager platform-tools
-      # Start ADB (and verify that pathing is working correctly).
-      - run: adb devices
-      # Verify $ANDROID_HOME is properly set for later Gradle commands.
-      - run: echo $ANDROID_HOME
+      - uses: actions/checkout@v2
+      - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.2
+        with:
+          cmd: ./gradlew integrationTest
+          api: 30
+          tag: default
+          abi: x86
