@@ -1,3 +1,6 @@
+echo "==> Who is online: ..."
+adb devices
+
 echo "==> Uninstalling the app from the device..."
 adb uninstall com.Altom.TrashCat
 
