@@ -11,7 +11,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       # Download & install the Android SDK.
-      - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.2
+      - name: install android
+        uses: malinskiy/action-android/emulator-run-cmd@release/0.1.2
           with:
             cmd: ./gradlew integrationTest
             api: 30
